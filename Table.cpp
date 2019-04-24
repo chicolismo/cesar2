@@ -38,6 +38,11 @@ void Table::SetItem(long item, Byte value) {
 }
 
 
+Byte Table::GetItem(long item) const {
+    return data_[item];
+}
+
+
 void Table::Refresh() {
     RefreshItems(0, size_ - 1);
 }

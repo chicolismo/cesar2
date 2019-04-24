@@ -53,6 +53,10 @@ void SidePanel::OnSize(wxSizeEvent &event) {
 
 
 void SidePanel::OnItemSelected(wxListEvent &event) {
+    int index = event.GetIndex();
+    wxString buffer;
+    buffer.Printf("%d", table_->GetItem(index));
+    text_control_->SetValue(buffer);
 }
 
 

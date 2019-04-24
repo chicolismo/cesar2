@@ -19,6 +19,8 @@ public:
 
     void SetItem(long item, Byte value);
 
+    Byte GetItem(long item) const;
+
     void Refresh();
 
     virtual void ResizeColumns() = 0;

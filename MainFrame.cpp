@@ -8,6 +8,7 @@
 #include "SidePanel.h"
 #include "ProgramTable.h"
 #include "Register.h"
+#include "ExecutionPanel.h"
 #include "assets/computer.xpm"
 
 MainFrame::MainFrame(wxWindow *parent, wxWindowID id, const wxString &title)
@@ -43,7 +44,7 @@ MainFrame::MainFrame(wxWindow *parent, wxWindowID id, const wxString &title)
 
     Fit();
     SetMinSize(GetSize());
-    SetMaxSize(GetSize());
+    // SetMaxSize(GetSize());
     UpdatePanelsPositions();
 }
 
@@ -97,18 +98,23 @@ void MainFrame::InitRegisters() {
     register_panels_[6] = r6;
     register_panels_[7] = r7;
 
-    wxGridSizer *grid = new wxGridSizer(3, 3, 5, 5);
-    grid->Add(r0, 0);
-    grid->Add(r1, 0);
-    grid->Add(r2, 0);
-    grid->Add(r3, 0);
-    grid->Add(r4, 0);
-    grid->Add(r5, 0);
-    grid->Add(r6, 0);
-    grid->Add(computer_panel, 0, wxEXPAND);
-    grid->Add(r7, 0);
+    int border = 5;
+    wxGridSizer *grid = new wxGridSizer(3, 3, border, border);
+    grid->Add(r0, 0, wxALIGN_CENTER);
+    grid->Add(r1, 0, wxALIGN_CENTER);
+    grid->Add(r2, 0, wxALIGN_CENTER);
+    grid->Add(r3, 0, wxALIGN_CENTER);
+    grid->Add(r4, 0, wxALIGN_CENTER);
+    grid->Add(r5, 0, wxALIGN_CENTER);
+    grid->Add(r6, 0, wxALIGN_CENTER);
+    grid->Add(computer_panel, 0, wxEXPAND | wxALIGN_CENTER);
+    grid->Add(r7, 0, wxALIGN_CENTER);
 
-    GetSizer()->Add(grid, 0, 0);
+    ExecutionPanel *execution_panel = new ExecutionPanel(this, wxID_ANY);
+    wxBoxSizer *horizontal_box = new wxBoxSizer(wxHORIZONTAL);
+    horizontal_box->Add(execution_panel, 0);
+    GetSizer()->Add(grid, 0, wxEXPAND | wxALL, border);
+    GetSizer()->Add(horizontal_box, 0, wxALL, 5);
 }
 
 
