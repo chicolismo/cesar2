@@ -41,6 +41,8 @@ public:
 
     void OnBaseChange(wxCommandEvent &event);
 
+    void OnMouseMove(wxMouseEvent &event);
+
 DECLARE_EVENT_TABLE();
 };
 

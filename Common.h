@@ -16,6 +16,7 @@ using Word = uint16_t;
 const int MEM_SIZE{1 << 16};
 const int BORDER_SIZE{8};
 
-const int SIDE_PANEL_STYLE = wxCAPTION | wxRESIZE_BORDER | wxFRAME_TOOL_WINDOW;
+const long MAIN_FRAME_STYLE = wxSYSTEM_MENU | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxCLOSE_BOX;
+const long SIDE_PANEL_STYLE = wxCAPTION | wxRESIZE_BORDER | wxFRAME_TOOL_WINDOW;
 
 #endif //CESAR_COMMON_H

@@ -8,10 +8,10 @@
 #include "SidePanel.h"
 #include "ProgramTable.h"
 #include "Register.h"
-
+#include "assets/computer.xpm"
 
 MainFrame::MainFrame(wxWindow *parent, wxWindowID id, const wxString &title)
-    : wxFrame(parent, id, title, wxDefaultPosition, wxDefaultSize) {
+    : wxFrame(parent, id, title, wxDefaultPosition, wxDefaultSize, MAIN_FRAME_STYLE) {
 
     cpu_ = new CPU();
     memory_ = cpu_->GetMemory();
@@ -40,6 +40,10 @@ MainFrame::MainFrame(wxWindow *parent, wxWindowID id, const wxString &title)
     InitRegisters();
     Center();
     Layout();
+
+    Fit();
+    SetMinSize(GetSize());
+    SetMaxSize(GetSize());
     UpdatePanelsPositions();
 }
 
@@ -50,6 +54,7 @@ wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
         EVT_MENU(wxID_OPEN, MainFrame::OnOpenFile)
         EVT_MENU(ID_OpenFile, MainFrame::OnOpenFile)
         EVT_MENU(wxID_EXIT, MainFrame::OnExit)
+        EVT_MOUSE_EVENTS(MainFrame::OnMouseMove)
 wxEND_EVENT_TABLE()
 
 
@@ -78,6 +83,11 @@ void MainFrame::InitRegisters() {
     RegisterPanel *r5 = new RegisterPanel(this, wxID_ANY, wxT("R5:"));
     RegisterPanel *r6 = new RegisterPanel(this, wxID_ANY, wxT("R6: (SP)"));
     RegisterPanel *r7 = new RegisterPanel(this, wxID_ANY, wxT("R7: (PC)"));
+
+    wxPanel *computer_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(58, 49), wxBORDER_RAISED);
+    wxBitmap computer_image(computer_xpm);
+    wxStaticBitmap *computer = new wxStaticBitmap(computer_panel, wxID_ANY, computer_image, wxPoint(18, 9));
+
     register_panels_[0] = r0;
     register_panels_[1] = r1;
     register_panels_[2] = r2;
@@ -95,11 +105,10 @@ void MainFrame::InitRegisters() {
     grid->Add(r4, 0);
     grid->Add(r5, 0);
     grid->Add(r6, 0);
-    grid->Add(new wxPanel(this, wxID_ANY), 0);
+    grid->Add(computer_panel, 0, wxEXPAND);
     grid->Add(r7, 0);
 
     GetSizer()->Add(grid, 0, 0);
-    Fit();
 }
 
 
@@ -168,6 +177,17 @@ void MainFrame::OnExit(wxCommandEvent &event) {
 
 
 void MainFrame::OnBaseChange(wxCommandEvent &event) {
+}
+
+
+void MainFrame::OnMouseMove(wxMouseEvent &event) {
+    wxCoord x, y;
+    event.GetPosition(&x, &y);
+
+    register_panels_[0]->SetValue(0xffff & x);
+    register_panels_[1]->SetValue(0xffff & y);
+
+    event.Skip();
 }
 
 

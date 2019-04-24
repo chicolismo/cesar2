@@ -20,7 +20,7 @@
 
 
 DigitalDisplay::DigitalDisplay(wxWindow *parent, wxWindowID id)
-    : wxPanel(parent, id, wxDefaultPosition, wxSize(WIDTH, HEIGHT)) {
+    : wxWindow(parent, id, wxDefaultPosition, wxSize(WIDTH, HEIGHT)) {
     display_images_[0] = wxBitmap(cesar_0_xpm);
     display_images_[1] = wxBitmap(cesar_1_xpm);
     display_images_[2] = wxBitmap(cesar_2_xpm);
@@ -118,7 +118,7 @@ RegisterPanel::RegisterPanel(wxWindow *parent, wxWindowID id, const wxString &ti
 }
 
 
-void RegisterPanel::SetValue(Byte value) {
+void RegisterPanel::SetValue(Word value) {
     display_->SetValue(value);
 }
 

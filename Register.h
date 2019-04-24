@@ -8,7 +8,7 @@
 #include <wx/wx.h>
 #include "Common.h"
 
-class DigitalDisplay : public wxPanel {
+class DigitalDisplay : public wxWindow {
 private:
     static const int DIGIT_WIDTH = 12;
     static const int DIGIT_OFFSET = DIGIT_WIDTH + 2;
@@ -52,7 +52,7 @@ class RegisterPanel : public wxPanel {
 public:
     RegisterPanel(wxWindow *parent, wxWindowID id, const wxString &title);
 
-    void SetValue(Byte value);
+    void SetValue(Word value);
 };
 
 #endif //CESAR_REGISTER_H
