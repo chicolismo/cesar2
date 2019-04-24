@@ -1,9 +1,6 @@
-//
-// Created by Carlos Pinheiro on 2019-04-23.
-//
-
 #include "CPU.h"
 
+#include <string>
 
 CPU::CPU() {
     memory_ = new Byte[MEM_SIZE];
@@ -24,5 +21,3 @@ void CPU::SetMemory(Byte *data, size_t size) {
         memory_[i] = data[i + offset];
     }
 }
-
-
