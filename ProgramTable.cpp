@@ -35,7 +35,7 @@ wxString ProgramTable::OnGetItemText(long item, long col) const {
         buffer.Printf("%d", data_[item]);
         break;
     case 3:
-        buffer.Printf("Mnemônico goes here");
+        buffer.Printf("%s", wxT("Mnemônico goes here"));
         break;
     }
     return buffer;
@@ -43,7 +43,11 @@ wxString ProgramTable::OnGetItemText(long item, long col) const {
 
 
 void ProgramTable::ResizeColumns() {
-    double q = (static_cast<double>(GetSize().GetWidth()) - 35) / 4;
+    double width = (static_cast<double>(GetSize().GetWidth()) - 35);
+    if (width <= 0) {
+        return;
+    }
+    double q = width / 4;
     SetColumnWidth(0, 20);
     SetColumnWidth(1, std::ceil(q));
     SetColumnWidth(2, std::ceil(q));

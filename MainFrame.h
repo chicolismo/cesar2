@@ -13,6 +13,7 @@ class MainFrame : public wxFrame {
     CPU *cpu_;
     Byte *memory_;
     wxVector<SidePanel *> panels_;
+    wxPanel *main_panel_;
     SidePanel *program_panel_;
     SidePanel *data_panel_;
     RegisterPanel *register_panels_[8]{};
@@ -30,6 +31,8 @@ public:
     void OpenFile();
 
     void UpdatePanelsPositions();
+
+    wxPanel *GetContentPane() const;
 
     void OnIconize(wxIconizeEvent &event);
 

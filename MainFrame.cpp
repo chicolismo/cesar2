@@ -12,7 +12,11 @@
 #include "assets/computer.xpm"
 
 MainFrame::MainFrame(wxWindow *parent, wxWindowID id, const wxString &title)
-    : wxFrame(parent, id, title, wxDefaultPosition, wxDefaultSize, MAIN_FRAME_STYLE) {
+    : wxFrame(parent, id, title, wxDefaultPosition, wxDefaultSize) {
+
+    main_panel_ = new wxPanel(this, wxID_ANY);
+    auto *box_sizer = new wxBoxSizer(wxVERTICAL);
+    main_panel_->SetSizer(box_sizer);
 
     cpu_ = new CPU();
     memory_ = cpu_->GetMemory();
@@ -34,20 +38,16 @@ MainFrame::MainFrame(wxWindow *parent, wxWindowID id, const wxString &title)
     panels_.push_back(program_panel_);
     panels_.push_back(data_panel_);
 
-    SetSizer(new wxBoxSizer(wxVERTICAL));
-
     InitMenu();
     InitRadios();
     InitRegisters();
-    Center();
-    Layout();
 
-    Fit();
+    main_panel_->SetBackgroundColour(*wxRED);
+    SetClientSize(main_panel_->GetBestSize());
     SetMinSize(GetSize());
-    // SetMaxSize(GetSize());
+    Center();
     UpdatePanelsPositions();
 }
-
 
 wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
         EVT_ICONIZE(MainFrame::OnIconize)
@@ -74,18 +74,24 @@ void MainFrame::InitMenu() {
 void MainFrame::InitRadios() {
 }
 
+wxPanel *MainFrame::GetContentPane() const {
+    return main_panel_;
+}
 
 void MainFrame::InitRegisters() {
-    RegisterPanel *r0 = new RegisterPanel(this, wxID_ANY, wxT("R0:"));
-    RegisterPanel *r1 = new RegisterPanel(this, wxID_ANY, wxT("R1:"));
-    RegisterPanel *r2 = new RegisterPanel(this, wxID_ANY, wxT("R2:"));
-    RegisterPanel *r3 = new RegisterPanel(this, wxID_ANY, wxT("R3:"));
-    RegisterPanel *r4 = new RegisterPanel(this, wxID_ANY, wxT("R4:"));
-    RegisterPanel *r5 = new RegisterPanel(this, wxID_ANY, wxT("R5:"));
-    RegisterPanel *r6 = new RegisterPanel(this, wxID_ANY, wxT("R6: (SP)"));
-    RegisterPanel *r7 = new RegisterPanel(this, wxID_ANY, wxT("R7: (PC)"));
+    auto *panel = GetContentPane();
+    auto *sizer = panel->GetSizer();
 
-    wxPanel *computer_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(58, 49), wxBORDER_RAISED);
+    RegisterPanel *r0 = new RegisterPanel(panel, wxID_ANY, wxT("R0:"));
+    RegisterPanel *r1 = new RegisterPanel(panel, wxID_ANY, wxT("R1:"));
+    RegisterPanel *r2 = new RegisterPanel(panel, wxID_ANY, wxT("R2:"));
+    RegisterPanel *r3 = new RegisterPanel(panel, wxID_ANY, wxT("R3:"));
+    RegisterPanel *r4 = new RegisterPanel(panel, wxID_ANY, wxT("R4:"));
+    RegisterPanel *r5 = new RegisterPanel(panel, wxID_ANY, wxT("R5:"));
+    RegisterPanel *r6 = new RegisterPanel(panel, wxID_ANY, wxT("R6: (SP)"));
+    RegisterPanel *r7 = new RegisterPanel(panel, wxID_ANY, wxT("R7: (PC)"));
+
+    wxPanel *computer_panel = new wxPanel(panel, wxID_ANY, wxDefaultPosition, wxSize(58, 49), wxBORDER_RAISED);
     wxBitmap computer_image(computer_xpm);
     wxStaticBitmap *computer = new wxStaticBitmap(computer_panel, wxID_ANY, computer_image, wxPoint(18, 9));
 
@@ -98,8 +104,7 @@ void MainFrame::InitRegisters() {
     register_panels_[6] = r6;
     register_panels_[7] = r7;
 
-    int border = 5;
-    wxGridSizer *grid = new wxGridSizer(3, 3, border, border);
+    wxGridSizer *grid = new wxGridSizer(3, 3, 5, 5);
     grid->Add(r0, 0, wxALIGN_CENTER);
     grid->Add(r1, 0, wxALIGN_CENTER);
     grid->Add(r2, 0, wxALIGN_CENTER);
@@ -107,14 +112,16 @@ void MainFrame::InitRegisters() {
     grid->Add(r4, 0, wxALIGN_CENTER);
     grid->Add(r5, 0, wxALIGN_CENTER);
     grid->Add(r6, 0, wxALIGN_CENTER);
-    grid->Add(computer_panel, 0, wxEXPAND | wxALIGN_CENTER);
+    grid->Add(computer_panel, 0, wxEXPAND);
     grid->Add(r7, 0, wxALIGN_CENTER);
 
-    ExecutionPanel *execution_panel = new ExecutionPanel(this, wxID_ANY);
+    ExecutionPanel *execution_panel = new ExecutionPanel(panel, wxID_ANY);
     wxBoxSizer *horizontal_box = new wxBoxSizer(wxHORIZONTAL);
     horizontal_box->Add(execution_panel, 0);
-    GetSizer()->Add(grid, 0, wxEXPAND | wxALL, border);
-    GetSizer()->Add(horizontal_box, 0, wxALL, 5);
+
+    sizer->Add(grid, 0, wxALL, 5);
+    sizer->Add(horizontal_box, 0, wxALL, 5);
+    panel->Fit();
 }
 
 
@@ -154,7 +161,7 @@ void MainFrame::OpenFile() {
         wxString error_message;
         error_message.Printf("Não foi possível abrir o arquivo %s", dialog.GetFilename());
         wxLogError(error_message);
-        wxMessageBox(error_message, wxMessageBoxCaptionStr);
+        wxMessageBox(error_message, wxT("Aviso"));
         return;
     }
 

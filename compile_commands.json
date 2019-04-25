@@ -1,0 +1,47 @@
+[
+{
+  "directory": "/home/chico/Projects/cesar2",
+  "command": "/usr/bin/c++   -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.1-unofficial -isystem /usr/include/wx-3.1-unofficial   -pthread -g   -std=gnu++14 -o CMakeFiles/cesar.dir/Main.cpp.o -c /home/chico/Projects/cesar2/Main.cpp",
+  "file": "/home/chico/Projects/cesar2/Main.cpp"
+},
+{
+  "directory": "/home/chico/Projects/cesar2",
+  "command": "/usr/bin/c++   -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.1-unofficial -isystem /usr/include/wx-3.1-unofficial   -pthread -g   -std=gnu++14 -o CMakeFiles/cesar.dir/MainFrame.cpp.o -c /home/chico/Projects/cesar2/MainFrame.cpp",
+  "file": "/home/chico/Projects/cesar2/MainFrame.cpp"
+},
+{
+  "directory": "/home/chico/Projects/cesar2",
+  "command": "/usr/bin/c++   -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.1-unofficial -isystem /usr/include/wx-3.1-unofficial   -pthread -g   -std=gnu++14 -o CMakeFiles/cesar.dir/Table.cpp.o -c /home/chico/Projects/cesar2/Table.cpp",
+  "file": "/home/chico/Projects/cesar2/Table.cpp"
+},
+{
+  "directory": "/home/chico/Projects/cesar2",
+  "command": "/usr/bin/c++   -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.1-unofficial -isystem /usr/include/wx-3.1-unofficial   -pthread -g   -std=gnu++14 -o CMakeFiles/cesar.dir/DataTable.cpp.o -c /home/chico/Projects/cesar2/DataTable.cpp",
+  "file": "/home/chico/Projects/cesar2/DataTable.cpp"
+},
+{
+  "directory": "/home/chico/Projects/cesar2",
+  "command": "/usr/bin/c++   -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.1-unofficial -isystem /usr/include/wx-3.1-unofficial   -pthread -g   -std=gnu++14 -o CMakeFiles/cesar.dir/SidePanel.cpp.o -c /home/chico/Projects/cesar2/SidePanel.cpp",
+  "file": "/home/chico/Projects/cesar2/SidePanel.cpp"
+},
+{
+  "directory": "/home/chico/Projects/cesar2",
+  "command": "/usr/bin/c++   -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.1-unofficial -isystem /usr/include/wx-3.1-unofficial   -pthread -g   -std=gnu++14 -o CMakeFiles/cesar.dir/ProgramTable.cpp.o -c /home/chico/Projects/cesar2/ProgramTable.cpp",
+  "file": "/home/chico/Projects/cesar2/ProgramTable.cpp"
+},
+{
+  "directory": "/home/chico/Projects/cesar2",
+  "command": "/usr/bin/c++   -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.1-unofficial -isystem /usr/include/wx-3.1-unofficial   -pthread -g   -std=gnu++14 -o CMakeFiles/cesar.dir/CPU.cpp.o -c /home/chico/Projects/cesar2/CPU.cpp",
+  "file": "/home/chico/Projects/cesar2/CPU.cpp"
+},
+{
+  "directory": "/home/chico/Projects/cesar2",
+  "command": "/usr/bin/c++   -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.1-unofficial -isystem /usr/include/wx-3.1-unofficial   -pthread -g   -std=gnu++14 -o CMakeFiles/cesar.dir/Register.cpp.o -c /home/chico/Projects/cesar2/Register.cpp",
+  "file": "/home/chico/Projects/cesar2/Register.cpp"
+},
+{
+  "directory": "/home/chico/Projects/cesar2",
+  "command": "/usr/bin/c++   -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-3.1-unofficial -isystem /usr/include/wx-3.1-unofficial   -pthread -g   -std=gnu++14 -o CMakeFiles/cesar.dir/ExecutionPanel.cpp.o -c /home/chico/Projects/cesar2/ExecutionPanel.cpp",
+  "file": "/home/chico/Projects/cesar2/ExecutionPanel.cpp"
+}
+]

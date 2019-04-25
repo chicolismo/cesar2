@@ -22,6 +22,7 @@ bool Application::OnInit() {
     MainFrame *main_frame = new MainFrame(nullptr, wxID_ANY, wxT("Cesar"));
     SetTopWindow(main_frame);
     main_frame->Show(true);
+
     return true;
 }
 

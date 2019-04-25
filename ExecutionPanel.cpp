@@ -1,19 +1,29 @@
 #include "ExecutionPanel.h"
 
-ExecutionPanel::ExecutionPanel(wxWindow *parent, wxWindowID id) : wxPanel(parent, id) {
-    access_display_ = new DigitalDisplay(this, wxID_ANY);
-    instructions_display_ = new DigitalDisplay(this, wxID_ANY);
+ExecutionPanel::ExecutionPanel(wxWindow *parent, wxWindowID id)
+    : wxPanel(parent, id) {
 
-    wxStaticBoxSizer *box_sizer = new wxStaticBoxSizer(wxVERTICAL, this, wxT("Execução:"));
-    wxGridSizer *sizer = new wxGridSizer(2, 2, 5, 5);
-    SetSizer(box_sizer);
+    auto *static_box_sizer = new wxStaticBoxSizer(wxVERTICAL, this, wxT("Execução"));
+    auto *static_box = static_box_sizer->GetStaticBox();
 
-    wxStaticText *access_label = new wxStaticText(this, wxID_ANY, wxT("Acessos:"), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
-    wxStaticText *instructions_label = new wxStaticText(this, wxID_ANY, wxT("Instruções:"), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
-    sizer->Add(access_label, 0, wxALIGN_CENTRE_VERTICAL | wxALIGN_RIGHT | wxRIGHT, 5);
-    sizer->Add(access_display_, 0, wxALIGN_CENTRE_VERTICAL | wxALIGN_RIGHT | wxRIGHT, 5);
-    sizer->Add(instructions_label, 0, wxALIGN_CENTRE_VERTICAL | wxALIGN_RIGHT | wxRIGHT, 5);
-    sizer->Add(instructions_display_, 0, wxALIGN_CENTRE_VERTICAL | wxALIGN_RIGHT | wxRIGHT, 5);
-    box_sizer->Add(sizer, 0, 0);
+    access_display_ = new DigitalDisplay(static_box, wxID_ANY);
+
+    instructions_display_ = new DigitalDisplay(static_box, wxID_ANY);
+
+    auto *access_label = new wxStaticText(static_box, wxID_ANY,
+        wxT("Acessos:"), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
+
+    auto *instructions_label = new wxStaticText(static_box, wxID_ANY,
+        wxT("Instruções:"), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
+
+    auto *sizer = new wxGridSizer(2, 2, 5, 5);
+    sizer->Add(access_label, 0, wxALIGN_RIGHT);
+    sizer->Add(access_display_, 0, wxALIGN_RIGHT);
+    sizer->Add(instructions_label, 0);
+    sizer->Add(instructions_display_, 0);
+
+    static_box_sizer->Add(sizer, 0, wxALL, 5);
+
+    SetSizer(static_box_sizer);
     Fit();
 }

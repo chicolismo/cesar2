@@ -7,7 +7,7 @@ DataTable::DataTable(wxWindow *parent, wxWindowID id) : Table(parent, id) {
 #else
     long style = wxLIST_FORMAT_RIGHT;
 #endif
-    SetSize(wxSize(110, 500));
+    SetSize(wxSize(160, 500));
     InsertColumn(0, wxT("Endereço"), style, wxLIST_AUTOSIZE);
     InsertColumn(1, wxT("Dado"), style, wxLIST_AUTOSIZE);
     ResizeColumns();
@@ -28,7 +28,11 @@ wxString DataTable::OnGetItemText(long item, long col) const {
 
 void DataTable::ResizeColumns() {
     // Barra de rolagem: 15 pixels
-    double q = static_cast<double>(GetSize().GetWidth() - 15) / 2.0;
+    double width = static_cast<double>(GetSize().GetWidth() - 15);
+    if (width <= 0) {
+        return;
+    }
+    double q = width / 2;
     SetColumnWidth(0, std::ceil(q));
     SetColumnWidth(1, std::ceil(q));
     SetScrollbar(wxHORIZONTAL, 0, 0, 0);

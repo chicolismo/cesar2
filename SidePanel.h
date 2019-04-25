@@ -5,8 +5,9 @@
 #ifndef CESAR_SIDEPANEL_H
 #define CESAR_SIDEPANEL_H
 
-#include <wx/wx.h>
 #include "Table.h"
+#include <wx/wx.h>
+#include <wx/minifram.h>
 
 class SidePanel : public wxFrame {
 private:
@@ -30,8 +31,7 @@ public:
 
     void OnTextEnter(wxCommandEvent &event);
 
-wxDECLARE_EVENT_TABLE();
+    wxDECLARE_EVENT_TABLE();
 };
 
-
-#endif //CESAR_SIDEPANEL_H
+#endif // CESAR_SIDEPANEL_H

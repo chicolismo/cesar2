@@ -20,7 +20,7 @@
 
 
 DigitalDisplay::DigitalDisplay(wxWindow *parent, wxWindowID id)
-    : wxWindow(parent, id, wxDefaultPosition, wxSize(WIDTH, HEIGHT)) {
+        : wxWindow(parent, id, wxDefaultPosition, wxSize(WIDTH, HEIGHT)) {
     display_images_[0] = wxBitmap(cesar_0_xpm);
     display_images_[1] = wxBitmap(cesar_1_xpm);
     display_images_[2] = wxBitmap(cesar_2_xpm);
@@ -42,7 +42,7 @@ DigitalDisplay::DigitalDisplay(wxWindow *parent, wxWindowID id)
 
 
 wxBEGIN_EVENT_TABLE(DigitalDisplay, wxWindow)
-        EVT_PAINT(DigitalDisplay::OnPaint)
+                EVT_PAINT(DigitalDisplay::OnPaint)
 wxEND_EVENT_TABLE()
 
 
@@ -108,12 +108,11 @@ void DigitalDisplay::SetBase(int base) {
 
 // RegisterPanel
 
-RegisterPanel::RegisterPanel(wxWindow *parent, wxWindowID id, const wxString &title)
-    : wxPanel(parent, id) {
-
+RegisterPanel::RegisterPanel(wxWindow *parent, wxWindowID id, const wxString &title) : wxPanel(parent, id) {
     display_ = new DigitalDisplay(this, wxID_ANY);
     wxStaticBoxSizer *sizer = new wxStaticBoxSizer(wxVERTICAL, this, title);
-    sizer->Add(display_, 0, 0);
+    sizer->Add(display_, 0, wxALIGN_CENTER | wxALL, 5);
+    Fit();
     SetSizer(sizer);
 }
 

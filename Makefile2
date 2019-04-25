@@ -1,0 +1,12 @@
+CXX = $(shell /usr/local/x86_64-w64-minw32/bin/wx-config --cxx)
+FLAGS = $(shell /usr/local/x86_64-w64-minw32/bin/wx-config --cxxflags)
+LIBS = $(shell /usr/local/x86_64-w64-minw32/bin/wx-config --libs)
+
+FILES := $(wildcard *.cpp)
+FILES := $(filter-out Main.cpp, $(FILES))
+
+main.exe:
+	$(CXX) -static -static-libgcc -static-libstdc++ -std=c++17 Main.cpp $(FLAGS) $(LIBS) -o main.exe $(FILES)
+
+clean:
+	rm -f main.exe

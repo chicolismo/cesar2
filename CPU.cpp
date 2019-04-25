@@ -1,11 +1,25 @@
+#include <strings.h>
 #include "CPU.h"
-
-#include <string>
 
 CPU::CPU() {
     memory_ = new Byte[MEM_SIZE];
+
+#ifndef _WIN32
     bzero(static_cast<void *>(registers_), 8);
     bzero(static_cast<void *>(memory_), MEM_SIZE);
+#else
+    registers_[0] = 0;
+    registers_[1] = 0;
+    registers_[2] = 0;
+    registers_[3] = 0;
+    registers_[4] = 0;
+    registers_[5] = 0;
+    registers_[6] = 0;
+    registers_[7] = 0;
+    for (int i = 0; i < MEM_SIZE; ++i) {
+        memory_[i] = 0;
+    }
+#endif
 }
 
 
