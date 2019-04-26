@@ -12,6 +12,7 @@
 class SidePanel : public wxFrame {
 private:
     Table *table_;
+    wxPanel *subpanel_;
     wxStaticText *label_;
     wxTextCtrl *text_control_;
 

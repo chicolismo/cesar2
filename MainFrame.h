@@ -1,13 +1,13 @@
 #ifndef CESAR_MAINFRAME_H
 #define CESAR_MAINFRAME_H
 
-#include <wx/wx.h>
-#include <wx/tglbtn.h>
-#include "Table.h"
-#include "Common.h"
-#include "SidePanel.h"
 #include "CPU.h"
+#include "Common.h"
 #include "Register.h"
+#include "SidePanel.h"
+#include "Table.h"
+#include <wx/tglbtn.h>
+#include <wx/wx.h>
 
 class MainFrame : public wxFrame {
     CPU *cpu_;
@@ -17,6 +17,7 @@ class MainFrame : public wxFrame {
     SidePanel *program_panel_;
     SidePanel *data_panel_;
     RegisterPanel *register_panels_[8]{};
+
 public:
     MainFrame(wxWindow *parent, wxWindowID id, const wxString &title);
 
@@ -44,9 +45,7 @@ public:
 
     void OnBaseChange(wxCommandEvent &event);
 
-    void OnMouseMove(wxMouseEvent &event);
-
-DECLARE_EVENT_TABLE();
+    DECLARE_EVENT_TABLE();
 };
 
-#endif //CESAR_MAINFRAME_H
+#endif // CESAR_MAINFRAME_H

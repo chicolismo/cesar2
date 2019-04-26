@@ -7,6 +7,7 @@
 
 class Table : public wxListCtrl {
 protected:
+    bool base10_;
     Byte *data_;
     size_t size_;
 
@@ -18,6 +19,8 @@ public:
     void SetData(Byte *data, size_t size);
 
     void SetItem(long item, Byte value);
+
+    void UseBase10(bool use);
 
     Byte GetItem(long item) const;
 

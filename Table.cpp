@@ -5,12 +5,17 @@ Table::Table(wxWindow *parent, wxWindowID id)
           wxLC_VIRTUAL | wxLC_REPORT | wxLC_HRULES | wxLC_VRULES) {
 
 #if defined(_WIN32) || defined(__linux__)
-    int font_size = 10;
+    int font_size = 8;
 #else
     int font_size = 12;
 #endif
-    //SetFont(wxFont(font_size, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
+    base10_ = true;
+    SetFont(wxFont(font_size, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
     SetItemCount(0);
+}
+
+void Table::UseBase10(bool use = true) {
+    base10_ = use;
 }
 
 wxString Table::OnGetItemText(long item, long WXUNUSED(col)) const {

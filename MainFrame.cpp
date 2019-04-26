@@ -1,6 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "cert-err58-cpp"
-
 #include <wx/wfstream.h>
 
 #include "MainFrame.h"
@@ -23,6 +20,7 @@ MainFrame::MainFrame(wxWindow *parent, wxWindowID id, const wxString &title)
 
     program_panel_ = new SidePanel(this, wxID_ANY, wxT("Programa"));
     auto *program_table = new ProgramTable(program_panel_, wxID_ANY);
+    program_table->UseBase10(false);
     program_table->SetData(memory_, MEM_SIZE);
     program_panel_->SetTable(program_table);
     program_panel_->SetupLayout();
@@ -55,7 +53,6 @@ wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
         EVT_MENU(wxID_OPEN, MainFrame::OnOpenFile)
         EVT_MENU(ID_OpenFile, MainFrame::OnOpenFile)
         EVT_MENU(wxID_EXIT, MainFrame::OnExit)
-        EVT_MOUSE_EVENTS(MainFrame::OnMouseMove)
 wxEND_EVENT_TABLE()
 
 
@@ -191,17 +188,3 @@ void MainFrame::OnExit(wxCommandEvent &event) {
 
 void MainFrame::OnBaseChange(wxCommandEvent &event) {
 }
-
-
-void MainFrame::OnMouseMove(wxMouseEvent &event) {
-    wxCoord x, y;
-    event.GetPosition(&x, &y);
-
-    register_panels_[0]->SetValue(0xffff & x);
-    register_panels_[1]->SetValue(0xffff & y);
-
-    event.Skip();
-}
-
-
-#pragma clang diagnostic pop
